@@ -1,0 +1,72 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>"Pling Plang Plong - Raindrop Speak"</title>
+</head>
+<body>
+
+<p style="background-color: lightblue; padding-left: 7px; padding-right: 7px; border-radius: 5px;">
+        This program was created for the August 2019 programming challenge in Habitica. You input a number and 
+        click the button, and the output shows "Pling" if the number is divisible by 3, "Plang" if the number is
+        divisible by 5, and "Plong" if the number is divisible by 7.
+        <br><br>
+        If the output is not divisible by 3, 5, or 7 then the number's factors are displayed.
+</p>
+
+<div class="form-group">
+    <label for="numberInput">Number:</label>
+    <input type="text" class="form-control" placeholder="Type a number here." id="numberInput">
+    <button class="btn form-control btn-primary" onclick="raindropSpeak(document.getElementById('numberInput').value)">Click here for Raindrop Speak</button>
+    <textarea id="result" class='form-control' placeholder="Result:" disabled></textarea>
+</div>
+
+<script>
+
+    function raindropSpeak(num){
+        let answer = '';
+
+        //If the number has 3 as a factor say Pling
+        if(num % 3 == 0 ){
+            answer = answer + "Pling";
+        }
+        //If the number has 5 as a factor say Plang
+        if(num % 5 == 0 ){
+            answer = answer + "Plang";
+        }
+        //If the number has 7 as a factor say Plong
+        if(num % 7 == 0 ){
+            answer = answer + "Plong";
+        }
+        //If the number does not have 3, 5, or 7 as a factor --> display the number and its factors
+        if((num%3)!=0 && (num%5)!=0 && (num%7)!=0){
+            answer = "Factors of " + num + findFactors(num);
+        }
+        //If there is nothing input, tell the user so
+        if(num == ''){
+            answer = "Please input a number.";
+        }
+
+        /*If I really wanted to get fancy I would filter the input to only allow numbers,
+        but that is a project for another time...*/
+
+        //Display the answer in the textarea
+        document.getElementById('result').value = answer;
+    }
+
+    function findFactors(num){
+        let factors = ":";
+
+        for(let x=1;x<=num;x++){
+            if(num % x == 0){
+                factors = factors + "  " + x;
+            }     
+        }
+        return factors;
+    }
+
+</script>
+
+</body>
+</html>
